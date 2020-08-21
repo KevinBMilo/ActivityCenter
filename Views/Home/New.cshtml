@@ -1,0 +1,48 @@
+@using Exam.Models
+@model Act
+
+<h1>Dojo Activity Center</h1>
+
+<a href="/home">Home</a>
+<a href="/logout">Logout</a>
+
+<h2>Create an Activity</h2>
+
+<form asp-action="plan" method="post" asp-controller="Home">
+<div class="form-group">
+    <label asp-for="ActName">Title:</label>
+    <input asp-for="ActName" type="text" class="form-control">
+    <span class="text-danger" asp-validation-for="ActName"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ActTime">Time:</label>
+    <input asp-for="ActTime" type="time" class="form-control">
+    <span class="text-danger" asp-validation-for="ActTime"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ActDate">Date:</label>
+    <input asp-for="ActDate" type="date" class="form-control">
+    <span class="text-danger" asp-validation-for="ActDate"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ActDurationOne">Duration:</label>
+    <input asp-for="ActDurationOne" type="text" class="form-control">
+    <span class="text-danger" asp-validation-for="ActDurationOne"></span>
+</div>
+<div class="form-group">
+    <select asp-for= "ActDurationTwo" class="custom-select">
+            <option value = "Hours">Hours</option>
+            <option value = "Days">Days</option>
+            <option value = "Minutes">Minutes</option>
+    </select>
+    <span class="text-danger" asp-validation-for="ActDurationTwo"></span>
+</div>
+<div class="form-group">
+    <label asp-for="ActContent">Description</label>
+    <textarea asp-for="ActContent" row="3" class="form-control" ></textarea>
+    <span class="text-danger" asp-validation-for="ActContent"></span>
+</div>
+<div class="form-group">
+    <button type="submit" class="btn btn-secondary m-1">Create Activity</button>
+</div>
+</form>

@@ -1,0 +1,39 @@
+@using Exam.Models
+@model Act
+
+<h1>Dojo Activity Center</h1>
+
+<a href="/home">Home</a>
+<a href="/logout">Logout</a>
+
+<h2>@Model.ActName</h2>
+
+
+@if(Model.Goings.Any(u => u.UserId == @ViewBag.UserId.UserId) == true)
+    {
+    <td><a href="/leaving/@Model.ActId">Leave</a></td>
+    }
+    else
+    {
+    <td><a href="/go/@Model.ActId">Join</a></td>
+    }
+
+@if(@ViewBag.UserId.UserId == Model.Creator.UserId)
+    {
+<td><a href="/delete/@Model.ActId">Delete</a></td>
+    }
+
+
+<h3>Event Coordinator: @Model.Creator.Name</h3>
+<h3>Description:</h3>
+<p>@Model.ActContent</p>
+
+
+<h4>Participants:</h4>
+<ul>
+    @{foreach(var go in Model.Goings)
+    {
+    <li>@go.User.Name</li>
+    }
+    }
+</ul>

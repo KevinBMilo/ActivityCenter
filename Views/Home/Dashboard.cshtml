@@ -1,0 +1,52 @@
+@using Exam.Models
+@model ViewModel
+
+
+<h1>Dojo Activity Center</h1>
+
+<a href="Logout">Logout </a>
+<h4>Welcome, @ViewBag.UserId.Name!</h4>
+<div class="card-group">
+  <div class="card">
+    <div class="card-body">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th>Activity</th>
+            <th>Date and Time</th>
+            <th>Duration</th>
+            <th>Event Coordinator</th>
+            <th>No. of Participants</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+              @foreach(var h in Model.AllActs)
+              {           
+          <tr>
+            <td><a href="activity/@h.ActId">@h.ActName</a></td>
+            <td>@h.ActDate @h.ActTime</td>
+            <td>@h.ActDurationOne @h.ActDurationTwo</td>
+            <td>@h.Creator.Name</td>
+            <td>@h.Goings.Count()</td>
+              @if(h.Goings.Any(u => u.UserId == Model.SessionData) == true)
+            {
+            <td><a href="leaving/@h.ActId">Leave</a></td>
+            }
+            else
+            {
+            <td><a href="go/@h.ActId">Join</a></td>
+            }
+            @if(Model.SessionData == h.UserId)
+              {
+            <td><a href="delete/@h.ActId">Delete</a></td>
+              }
+          </tr>
+              }
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<a href="new" class="btn btn-secondary m-1">Add New Activity</a>
